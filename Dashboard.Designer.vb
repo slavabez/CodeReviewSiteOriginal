@@ -31,7 +31,6 @@ Partial Class dashboard
         Me.Label3 = New System.Windows.Forms.Label()
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.exitBtn = New System.Windows.Forms.Button()
-        Me.adminCheckBox = New System.Windows.Forms.CheckBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -118,22 +117,11 @@ Partial Class dashboard
         Me.exitBtn.Text = "Exit"
         Me.exitBtn.UseVisualStyleBackColor = True
         '
-        'adminCheckBox
-        '
-        Me.adminCheckBox.AutoSize = True
-        Me.adminCheckBox.Location = New System.Drawing.Point(19, 345)
-        Me.adminCheckBox.Name = "adminCheckBox"
-        Me.adminCheckBox.Size = New System.Drawing.Size(87, 17)
-        Me.adminCheckBox.TabIndex = 9
-        Me.adminCheckBox.Text = "Tick if Admin"
-        Me.adminCheckBox.UseVisualStyleBackColor = True
-        '
         'dashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(372, 375)
-        Me.Controls.Add(Me.adminCheckBox)
         Me.Controls.Add(Me.exitBtn)
         Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.Label3)
@@ -159,6 +147,5 @@ Partial Class dashboard
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents btnLogin As System.Windows.Forms.Button
     Friend WithEvents exitBtn As System.Windows.Forms.Button
-    Friend WithEvents adminCheckBox As System.Windows.Forms.CheckBox
 
 End Class

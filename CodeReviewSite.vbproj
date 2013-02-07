@@ -72,10 +72,22 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adminDashboard.Designer.vb">
+      <DependentUpon>adminDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="adminDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="CodeReviewSiteDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CodeReviewSiteDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="userDashboard.Designer.vb">
+      <DependentUpon>userDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="userDashboard.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="WebServer.vb" />
     <Compile Include="Dashboard.vb">
