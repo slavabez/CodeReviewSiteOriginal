@@ -12,30 +12,33 @@ Imports System.IO
 
 Module Webserver
     Private server As WebServer = New WebServer
+    Public serverIP As IPAddress
+
     Sub Main()
         server.serve()
     End Sub
 
+    Public Sub openAddressOfTheServer()
+        Dim address As String
+        ' Dim hostName As String = Dns.GetHostName()
+        'creating a valid address to go to the server's webpage
+        address = "http://" + serverIP.ToString + ":8080"
+        'opening that address using the default browser
+        System.Diagnostics.Process.Start(address)
+
+    End Sub
 
 
     Public Class WebServer
         Private tcpListener As System.Net.Sockets.TcpListener
         Private clientSocket As System.Net.Sockets.Socket
-        Dim serverIP As IPAddress
+
         ' Set WWW Root Path
         Dim rootPath As String = "www\"
         ' Set default page
         Dim defaultPage As String = "index.html"
 
-        Public Sub openAddressOfTheServer()
-            Dim address As String
-            ' Dim hostName As String = Dns.GetHostName()
-            'creating a valid address to go to the server's webpage
-            address = "http://" + serverIP.ToString + ":8080"
-            'opening that address using the default browser
-            System.Diagnostics.Process.Start(address)
-
-        End Sub
+        
 
         Public Sub serve()
             Dim hostName As String = Dns.GetHostName()

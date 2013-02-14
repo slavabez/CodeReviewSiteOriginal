@@ -15,6 +15,7 @@ Public Class dashboard
     Dim MyDataAdapter As OleDb.OleDbDataAdapter
 
     Dim myDataSet As DataSet
+    
 
 
     Private Sub dashboard_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
@@ -25,7 +26,9 @@ Public Class dashboard
     End Sub
 
     Private Sub LblLinkToPortfolios_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LblLinkToPortfolios.LinkClicked
-        
+        'Opens the address in the default browser
+        Webserver.openAddressOfTheServer()
+
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As System.Object, e As System.EventArgs) Handles TextBox1.TextChanged
