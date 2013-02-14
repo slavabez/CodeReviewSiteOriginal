@@ -83,6 +83,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CodeReviewSiteDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CodeReviewSiteDataSet.vb">
+      <DependentUpon>CodeReviewSiteDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="userDashboard.Designer.vb">
       <DependentUpon>userDashboard.vb</DependentUpon>
     </Compile>
@@ -114,6 +117,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="adminDashboard.resx">
+      <DependentUpon>adminDashboard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.vb</DependentUpon>
     </EmbeddedResource>

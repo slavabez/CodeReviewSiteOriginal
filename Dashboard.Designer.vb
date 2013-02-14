@@ -23,7 +23,7 @@ Partial Class dashboard
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.usrnBox = New System.Windows.Forms.TextBox()
         Me.pswdTxtBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -43,12 +43,12 @@ Partial Class dashboard
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
-        'TextBox1
+        'usrnBox
         '
-        Me.TextBox1.Location = New System.Drawing.Point(14, 275)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(173, 20)
-        Me.TextBox1.TabIndex = 1
+        Me.usrnBox.Location = New System.Drawing.Point(14, 275)
+        Me.usrnBox.Name = "usrnBox"
+        Me.usrnBox.Size = New System.Drawing.Size(173, 20)
+        Me.usrnBox.TabIndex = 1
         '
         'pswdTxtBox
         '
@@ -129,7 +129,7 @@ Partial Class dashboard
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.pswdTxtBox)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.usrnBox)
         Me.Controls.Add(Me.PictureBox1)
         Me.Name = "dashboard"
         Me.Text = "Dashboard"
@@ -139,7 +139,7 @@ Partial Class dashboard
 
     End Sub
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents usrnBox As System.Windows.Forms.TextBox
     Friend WithEvents pswdTxtBox As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
