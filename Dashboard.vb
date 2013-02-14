@@ -25,13 +25,7 @@ Public Class dashboard
     End Sub
 
     Private Sub LblLinkToPortfolios_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LblLinkToPortfolios.LinkClicked
-        Dim address As String
-        Dim hostName As String = Dns.GetHostName()
-        'creating a valid address to go to the server's webpage
-        address = "http://" + Dns.GetHostEntry(hostName).AddressList(5).ToString + ":8080"
-        'opening that address using the default browser
-        System.Diagnostics.Process.Start(address)
-
+        
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As System.Object, e As System.EventArgs) Handles TextBox1.TextChanged

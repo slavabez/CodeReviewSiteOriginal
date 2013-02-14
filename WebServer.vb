@@ -16,28 +16,76 @@ Module Webserver
         server.serve()
     End Sub
 
+
+
     Public Class WebServer
         Private tcpListener As System.Net.Sockets.TcpListener
         Private clientSocket As System.Net.Sockets.Socket
+        Dim serverIP As IPAddress
         ' Set WWW Root Path
         Dim rootPath As String = "www\"
         ' Set default page
         Dim defaultPage As String = "index.html"
+
+        Public Sub openAddressOfTheServer()
+            Dim address As String
+            ' Dim hostName As String = Dns.GetHostName()
+            'creating a valid address to go to the server's webpage
+            address = "http://" + serverIP.ToString + ":8080"
+            'opening that address using the default browser
+            System.Diagnostics.Process.Start(address)
+
+        End Sub
+
         Public Sub serve()
             Dim hostName As String = Dns.GetHostName()
-            Dim serverIP As IPAddress = Dns.GetHostEntry(hostName).AddressList(5)
+
+
+            'This FOR loop assigns the first IPv4 address it can find
+            For value As Integer = 0 To Dns.GetHostEntry(hostName).AddressList.Length
+                If (checkIfIPp4(Dns.GetHostEntry(hostName).AddressList(value))) = True Then
+                    serverIP = Dns.GetHostEntry(hostName).AddressList(value)
+                    Exit For
+                End If
+            Next
+
+
             Dim Port As String = "8080"
-            tcpListener = New TcpListener(serverIP, Int32.Parse(Port))
-            tcpListener.Start()
-            Console.WriteLine("Web server started at: " & hostName & " " & serverIP.ToString() & ":" & Port)
-            While (True)
-                clientSocket = tcpListener.AcceptSocket()
-                ' Socket Information
-                Dim clientInfo As IPEndPoint = CType(clientSocket.RemoteEndPoint, IPEndPoint)
-                Console.WriteLine("Client: " + clientInfo.Address.ToString() + ":" + clientInfo.Port.ToString())
-                ProcessRequest()
-            End While
+
+                tcpListener = New TcpListener(serverIP, Int32.Parse(Port))
+                tcpListener.Start()
+                Console.WriteLine("Web server started at: " & hostName & " " & serverIP.ToString() & ":" & Port)
+                While (True)
+                    clientSocket = tcpListener.AcceptSocket()
+                    ' Socket Information
+                    Dim clientInfo As IPEndPoint = CType(clientSocket.RemoteEndPoint, IPEndPoint)
+                    Console.WriteLine("Client: " + clientInfo.Address.ToString() + ":" + clientInfo.Port.ToString())
+                    ProcessRequest()
+                End While
         End Sub
+
+        Function checkIfIPp4(ByVal address As IPAddress) As Boolean
+
+            Dim addressAsString = address.ToString
+
+            If (IPAddress.TryParse(addressAsString, address)) Then
+                Select Case address.AddressFamily
+                    Case System.Net.Sockets.AddressFamily.InterNetwork
+                        'Haha, we have an IPv4 address
+                        Return True
+                    Case System.Net.Sockets.AddressFamily.InterNetworkV6
+                        'Haha, we have an IPv6 address
+                        Return False
+                    Case Else
+                        'Hm, we have something that isn't even an IP address...
+                        Return False
+                End Select
+
+            End If
+
+            Return False
+
+        End Function
 
         Protected Sub ProcessRequest()
             Dim recvBytes(1024) As Byte
