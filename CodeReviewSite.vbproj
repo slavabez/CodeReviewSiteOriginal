@@ -78,6 +78,12 @@
     <Compile Include="adminDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="authorDashboard.Designer.vb">
+      <DependentUpon>authorDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="authorDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="CodeReviewSiteDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

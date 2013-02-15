@@ -72,25 +72,91 @@ Public Class dashboard
 
         If login Is Nothing Then
 
-            invalidAttempts = invalidAttempts - 1
+            Dim checkIfExists = usernamesDataAdapter.ScalarQueryCheck(username)
 
-            Dim checkIfFrozen = usernamesDataAdapter.ScalarQueryCheck(username)
-
-            If checkIfFrozen Is Nothing Then
+            If checkIfExists Is Nothing Then
                 'the user doesn't exist
-                MsgBox("The user entered does not exist")
+                MsgBox("The user with the entered username does not exist")
             Else
+                'the user does exist, decrease his invalidAttempts.
+                'If invalid attempts are equal to zero or less, then freeze the account
+                Dim checkIfFrozen = usernamesDataAdapter.ScalarQueryCheckIsFrozen(username, True)
+
+                If checkIfFrozen Is Nothing Then
+                    'The account is not frozen, decrease the number of invalidAttempts, freeze if neccessary
+                    usernamesDataAdapter.UpdateQueryDecreaseInvalidAttemptsByOne(username)
+
+                    'check if invalidAttempts = 0
+                    Dim checkIfZero = usernamesDataAdapter.ScalarQueryCheckInvalidAttempts(username, 0)
+                    If checkIfZero Is Nothing Then
+                        'the invalidAttempts field is not equal to zero, do nothing
+                    Else
+                        'the invalidAttemots field is equal to zero, proceed to Freeze this account
+                        usernamesDataAdapter.UpdateQuerySetToFrozen(username)
+
+
+                    End If
+
+                Else
+                    'The account is Frozen, display the requred prompt
+                    MsgBox("Your username has been frozen to prevent your account from being hacked. Please contact your Administrator.")
+
+                End If
+
 
             End If
 
-            MessageBox.Show("Good attempt, but you're not a real user! You have " & invalidAttempts & " attempt(s) remaining...")
+            MessageBox.Show("Wrong password. Note that your account will get frozen if you enter a wrong password three times.")
 
         Else
             'Logged in successfully, such user exists
-            Dim checkIfFrozen = usernamesDataAdapter.ScalarQueryCheck(u
+            'Now let's check whether the user is an admin. If he's an admin, he can't be frozen
+            'A non-admin user that is frozen shouldn't be loggedin
+
+            Dim checkIfAdmin = usernamesDataAdapter.ScalarQueryCheckIfAdmin(username, True)
+            If checkIfAdmin Is Nothing Then
+                'Not an admin. Let's check if the user is frozen first
+
+                Dim checkIfFrozen = usernamesDataAdapter.ScalarQueryCheckIsFrozen(username, True)
+                If checkIfFrozen Is Nothing Then
+                    'not frozen. Now let's check if the user is an Author
+                    Dim checkIfAuthor = usernamesDataAdapter.ScalarQueryCheckIfAuthor(username, True)
+                    If checkIfAuthor Is Nothing Then
+                        'not an Author, log his in as a standard user
+                        MsgBox("Welcome, " & username & ". You have successfully logged in as a User, now taking you to your Dashboard.")
+                        Me.Hide()
+                        userDashboard.Show()
+
+
+                    Else
+                        'Author, log him into the Author dashboard
+                        MsgBox("Welcome, " & username & ". You have successfully logged in as an Author, now taking you to your Dashboard.")
+                        Me.Hide()
+                        authorDashboard.Show()
+
+                    End If
+
+
+
+                Else
+                    'Frozen user
+                    MsgBox("It looks like your username has been frozen due to security reasons. Please contact an Administrator.")
+
+                End If
+
+
+            Else
+                'Admin, log him into the admin dashboard
+                MsgBox("Welcome, " & username & ". You have successfully logged in as an Administrator, now taking you to your Dashboard.")
+                Me.Hide()
+                adminDashboard.Show()
+            End If
 
 
             MsgBox("Hi, login successful!")
+            usernamesDataAdapter.UpdateQueryRefreshInvalidAttempts(username)
+
+
 
         End If
 
