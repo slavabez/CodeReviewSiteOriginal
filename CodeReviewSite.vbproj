@@ -86,6 +86,11 @@
     <Compile Include="CodeReviewSiteDataSet.vb">
       <DependentUpon>CodeReviewSiteDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CodeReviewSiteDataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CodeReviewSiteDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="userDashboard.Designer.vb">
       <DependentUpon>userDashboard.vb</DependentUpon>
     </Compile>
@@ -142,6 +147,17 @@
     </None>
     <None Include="CodeReviewSiteDataSet.xss">
       <DependentUpon>CodeReviewSiteDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CodeReviewSiteDataSet1.xsc">
+      <DependentUpon>CodeReviewSiteDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="CodeReviewSiteDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CodeReviewSiteDataSet1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CodeReviewSiteDataSet1.xss">
+      <DependentUpon>CodeReviewSiteDataSet1.xsd</DependentUpon>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

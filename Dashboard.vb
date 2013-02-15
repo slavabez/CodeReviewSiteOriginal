@@ -9,9 +9,6 @@ Public Class dashboard
 
     Dim serverThread As Thread
 
-    Dim DBpath As String = ""
-    Dim DBtable As String = "usernames"
-
     Dim myCon As New OleDb.OleDbConnection
 
     Dim dataSet As New CodeReviewSiteDataSet()
@@ -68,18 +65,31 @@ Public Class dashboard
             Application.Exit()
 
         End If
+        Dim username As String = usrnBox.Text
+        Dim password As String = pswdTxtBox.Text
 
-
-        Dim login = usernamesDataAdapter.ScalarQueryLogin(usrnBox.Text, pswdTxtBox.Text)
+        Dim login = usernamesDataAdapter.ScalarQueryLogin(username, password)
 
         If login Is Nothing Then
 
             invalidAttempts = invalidAttempts - 1
 
+            Dim checkIfFrozen = usernamesDataAdapter.ScalarQueryCheck(username)
+
+            If checkIfFrozen Is Nothing Then
+                'the user doesn't exist
+                MsgBox("The user entered does not exist")
+            Else
+
+            End If
+
             MessageBox.Show("Good attempt, but you're not a real user! You have " & invalidAttempts & " attempt(s) remaining...")
 
         Else
-            'Logged in successfully
+            'Logged in successfully, such user exists
+            Dim checkIfFrozen = usernamesDataAdapter.ScalarQueryCheck(u
+
+
             MsgBox("Hi, login successful!")
 
         End If

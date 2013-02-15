@@ -289,6 +289,12 @@ Partial Public Class CodeReviewSiteDataSet
         
         Private columnadmin As Global.System.Data.DataColumn
         
+        Private columnauthor As Global.System.Data.DataColumn
+        
+        Private columnfrozen As Global.System.Data.DataColumn
+        
+        Private columninvalidAttempts As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -349,6 +355,30 @@ Partial Public Class CodeReviewSiteDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property authorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnauthor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property frozenColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfrozen
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property invalidAttemptsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columninvalidAttempts
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -385,9 +415,9 @@ Partial Public Class CodeReviewSiteDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddusernamesRow(ByVal username As String, ByVal password As String, ByVal admin As Boolean) As usernamesRow
+        Public Overloads Function AddusernamesRow(ByVal username As String, ByVal password As String, ByVal admin As Boolean, ByVal author As Boolean, ByVal frozen As Boolean, ByVal invalidAttempts As Single) As usernamesRow
             Dim rowusernamesRow As usernamesRow = CType(Me.NewRow,usernamesRow)
-            Dim columnValuesArray() As Object = New Object() {username, password, admin}
+            Dim columnValuesArray() As Object = New Object() {username, password, admin, author, frozen, invalidAttempts}
             rowusernamesRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowusernamesRow)
             Return rowusernamesRow
@@ -413,6 +443,9 @@ Partial Public Class CodeReviewSiteDataSet
             Me.columnusername = MyBase.Columns("username")
             Me.columnpassword = MyBase.Columns("password")
             Me.columnadmin = MyBase.Columns("admin")
+            Me.columnauthor = MyBase.Columns("author")
+            Me.columnfrozen = MyBase.Columns("frozen")
+            Me.columninvalidAttempts = MyBase.Columns("invalidAttempts")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -424,6 +457,12 @@ Partial Public Class CodeReviewSiteDataSet
             MyBase.Columns.Add(Me.columnpassword)
             Me.columnadmin = New Global.System.Data.DataColumn("admin", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnadmin)
+            Me.columnauthor = New Global.System.Data.DataColumn("author", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnauthor)
+            Me.columnfrozen = New Global.System.Data.DataColumn("frozen", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfrozen)
+            Me.columninvalidAttempts = New Global.System.Data.DataColumn("invalidAttempts", GetType(Single), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columninvalidAttempts)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnusername}, false))
             Me.columnusername.Unique = true
             Me.columnusername.MaxLength = 15
@@ -619,6 +658,51 @@ Partial Public Class CodeReviewSiteDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property author() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableusernames.authorColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'author' in table 'usernames' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableusernames.authorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property frozen() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableusernames.frozenColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'frozen' in table 'usernames' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableusernames.frozenColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property invalidAttempts() As Single
+            Get
+                Try 
+                    Return CType(Me(Me.tableusernames.invalidAttemptsColumn),Single)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'invalidAttempts' in table 'usernames' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableusernames.invalidAttemptsColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsusernameNull() As Boolean
             Return Me.IsNull(Me.tableusernames.usernameColumn)
         End Function
@@ -651,6 +735,42 @@ Partial Public Class CodeReviewSiteDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetadminNull()
             Me(Me.tableusernames.adminColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsauthorNull() As Boolean
+            Return Me.IsNull(Me.tableusernames.authorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetauthorNull()
+            Me(Me.tableusernames.authorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsfrozenNull() As Boolean
+            Return Me.IsNull(Me.tableusernames.frozenColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetfrozenNull()
+            Me(Me.tableusernames.frozenColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsinvalidAttemptsNull() As Boolean
+            Return Me.IsNull(Me.tableusernames.invalidAttemptsColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetinvalidAttemptsNull()
+            Me(Me.tableusernames.invalidAttemptsColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -823,14 +943,21 @@ Namespace CodeReviewSiteDataSetTableAdapters
             tableMapping.ColumnMappings.Add("username", "username")
             tableMapping.ColumnMappings.Add("password", "password")
             tableMapping.ColumnMappings.Add("admin", "admin")
+            tableMapping.ColumnMappings.Add("author", "author")
+            tableMapping.ColumnMappings.Add("frozen", "frozen")
+            tableMapping.ColumnMappings.Add("invalidAttempts", "invalidAttempts")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `usernames` (`username`, `password`, `admin`) VALUES (?, ?, ?)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `usernames` (`username`, `password`, `admin`, `author`, `frozen`, `in"& _ 
+                "validAttempts`) VALUES (?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("username", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "username", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("password", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "password", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("admin", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "admin", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("author", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "author", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("frozen", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "frozen", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("invalidAttempts", Global.System.Data.OleDb.OleDbType.[Single], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "invalidAttempts", Global.System.Data.DataRowVersion.Current, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -846,7 +973,8 @@ Namespace CodeReviewSiteDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(3) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT username, [password], admin FROM usernames"
+            Me._commandCollection(0).CommandText = "SELECT username, [password], admin, author, frozen, invalidAttempts FROM username"& _ 
+                "s"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -927,18 +1055,25 @@ Namespace CodeReviewSiteDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal username As String, ByVal password As String, ByVal admin As Boolean) As Integer
+        Public Overloads Overridable Function Insert(ByVal username As String, ByVal password As String, ByVal admin As Boolean, ByVal author As Boolean, ByVal frozen As Boolean, ByVal invalidAttempts As Global.System.Nullable(Of Single)) As Integer
             If (username Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("username")
             Else
                 Me.Adapter.InsertCommand.Parameters(0).Value = CType(username,String)
             End If
             If (password Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("password")
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = CType(password,String)
             End If
             Me.Adapter.InsertCommand.Parameters(2).Value = CType(admin,Boolean)
+            Me.Adapter.InsertCommand.Parameters(3).Value = CType(author,Boolean)
+            Me.Adapter.InsertCommand.Parameters(4).Value = CType(frozen,Boolean)
+            If (invalidAttempts.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(invalidAttempts.Value,Single)
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
